@@ -10,7 +10,7 @@ class Footer extends Component {
           </a>
         </div>
         <div className="d-inline-block copy-right">
-          © {new Date().getFullYear()} Copyright:
+          © {new Date().getFullYear()} Copyright :
         </div>
         <div className="d-inline-block footer">
           <a href="#">Picklist_Maker</a>

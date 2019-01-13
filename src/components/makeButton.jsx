@@ -8,9 +8,15 @@ class MakeButton extends Component {
 
   render() {
     return (
-      <button className={this.getClasses()} onClick={this.props.onMake}>
+      // <div class="btn-group" role="group" aria-label="Button group">
+      <button
+        type="button"
+        className={this.getClasses()}
+        onClick={this.props.onMake}
+      >
         Make
       </button>
+      // </div>
     );
   }
 }
