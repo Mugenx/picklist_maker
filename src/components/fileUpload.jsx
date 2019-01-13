@@ -16,7 +16,9 @@ class FileUpload extends Component {
           required
           disabled={this.props.disabled}
         />
-        <label className="custom-file-label">{this.getFileName()}</label>
+        <label className="custom-file-label text-center">
+          {this.getFileName()}
+        </label>
       </div>
     );
   }
