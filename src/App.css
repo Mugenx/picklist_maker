@@ -1,32 +1,74 @@
-.App {
+h1 {
+  font-family: 'Lobster', cursive;
   text-align: center;
+  margin: 3rem;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.wrapper {
+  margin: 5% 8% 0;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 5px 10px #9f9f9f;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  background-image: url('http://www.notcot.org/images/bg-w.gif');
+}
+
+a,
+.footer,
+.custom-file-label {
+  color: #9c9c9c;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+a:hover {
+  color: #1abc9c;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.btn {
+  background-color: #1abc9c;
   color: white;
+  font-family: 'Lobster', cursive;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-pills .nav-link.active {
+  background-color: #1abc9c;
+  color: white;
+  font-weight: bold;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.picklists {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  margin-top: 1em;
+  padding: 2em;
+}
+
+.sampleFile {
+  color: gray;
+  font-weight: bold;
+}
+
+.copy-right {
+  margin: 0 1em;
+  color: gray;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.footer-text {
+  font-size: 14px;
+}
+
+.footer > a {
+  color: gray;
 }
