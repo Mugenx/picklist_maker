@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class FileUpload extends Component {
+  getFileName = () => {
+    return this.props.fileName || 'Choose A File...';
+  };
+
   render() {
     return (
       <div className="custom-file">
@@ -12,7 +16,9 @@ class FileUpload extends Component {
           required
           disabled={this.props.disabled}
         />
-        <label className="custom-file-label">Choose A File...</label>
+        <label className="custom-file-label text-center">
+          {this.getFileName()}
+        </label>
       </div>
     );
   }
