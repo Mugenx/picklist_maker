@@ -10,14 +10,17 @@ import './App.css';
 class App extends Component {
   state = {
     data: null,
+    fileName: null,
     picklists: null,
     disabled: false
   };
 
   handleFile = () => {
     const file = document.getElementById('filesInput').files[0];
-    const reader = new FileReader();
+    const fileName = file.name;
+    this.setState({ fileName });
 
+    const reader = new FileReader();
     reader.addEventListener('load', e => {
       const { result } = e.target;
       const data = result;
@@ -97,6 +100,7 @@ class App extends Component {
           <div className="container">
             <h1>Picklists Maker</h1>
             <FileUpload
+              fileName={this.state.fileName}
               onUpload={this.handleFile}
               disabled={this.state.disabled}
             />

@@ -13,7 +13,7 @@ h1 {
 }
 
 body {
-  background-image: url('http://www.notcot.org/images/bg-w.gif');
+  background-image: url('./img/bg-w.gif');
 }
 
 a,
@@ -65,10 +65,18 @@ a:hover {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
+.d-inline-block {
+  background-color: white;
+}
+
 .footer-text {
   font-size: 14px;
 }
 
 .footer > a {
   color: gray;
+}
+
+.btn-file input[type='file'] {
+  color: red;
 }
