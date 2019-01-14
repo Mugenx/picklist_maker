@@ -4,16 +4,9 @@ class Footer extends Component {
   render() {
     return (
       <div className="text-center footer-text mt-5">
-        <div className="d-inline-block">
-          <a href="../../public/sample.csv" className="sampleFile" download>
-            Download Sample
-          </a>
-        </div>
-        <div className="d-inline-block copy-right">
-          © {new Date().getFullYear()} Copyright :
-        </div>
-        <div className="d-inline-block footer">
-          <a href="https://mugenx.github.io/picklist_maker">Picklist_Maker</a>
+        <div className="copy-right">
+          © {new Date().getFullYear()} &nbsp;
+          <a href="https://mugenx.io">MUGENX.IO</a>
         </div>
       </div>
     );
