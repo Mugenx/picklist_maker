@@ -10,10 +10,8 @@ class Footer extends Component {
           </a>
         </div>
         <div className="d-inline-block copy-right">
-          © {new Date().getFullYear()} Copyright :
-        </div>
-        <div className="d-inline-block footer">
-          <a href="https://mugenx.github.io/picklist_maker">Picklist_Maker</a>
+          © {new Date().getFullYear()} &nbsp;
+          <a href="https://mugenx.io">MUGENX.IO</a>
         </div>
       </div>
     );
