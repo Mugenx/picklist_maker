@@ -9,18 +9,17 @@ class PicklistPill extends Component {
 
   render() {
     return (
-      <a
+      <div
         className={this.getClasses()}
         id={`v-pills-${this.props.name}-tab`}
         data-toggle="pill"
-        href={`#v-pills-${this.props.name}`}
         role="tab"
         aria-controls={`v-pills-${this.props.name}`}
         aria-selected="true"
         onClick={() => this.props.handelActive(this.props.index)}
       >
         {this.props.name}
-      </a>
+      </div>
     );
   }
 }

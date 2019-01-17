@@ -17,12 +17,17 @@ body {
 }
 
 a,
+.nav-link,
 .footer,
 .custom-file-label {
   color: #9c9c9c;
   text-decoration: none;
   background-color: transparent;
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.nav-link:hover {
+  cursor: pointer;
 }
 
 a:hover {
@@ -77,6 +82,15 @@ a:hover {
   color: gray;
 }
 
-.btn-file input[type='file'] {
-  color: red;
+.d-inline {
+  background-color: white;
+}
+
+textarea.form-control{
+  color: #e83e8c;
+  height: 100vh;
+}
+
+.navbar-toggler {
+  background-color: #9c9c9c;
 }

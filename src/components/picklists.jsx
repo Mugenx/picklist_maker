@@ -39,11 +39,7 @@ class Picklists extends Component {
             key={picklist.name}
             index={picklists.indexOf(picklist)}
             name={picklist.name}
-            content={
-              picklists.indexOf(picklist) === picklists.length - 1
-                ? JSON.stringify(picklist.content).replace(/\\r/g, '')
-                : JSON.stringify(picklist.content)
-            }
+            content={picklist.content}
             activeTab={this.state.active}
           />
         );

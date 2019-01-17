@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import FileUpload from './components/fileUpload.jsx';
+// import Options from './components/options.jsx';
 import Picklists from './components/picklists.jsx';
 import MakeButton from './components/makeButton.jsx';
 import Footer from './components/footer';
@@ -54,8 +55,9 @@ class App extends Component {
           const picklist = {
             name: picklistName,
             value: last_value,
-            parents: last_parents
-            // external: true
+            parents: last_parents,
+            external: true,
+            rank: 1,
           };
           if (index === 0) delete picklist['parents'];
           picklists.push(picklist);
@@ -104,6 +106,7 @@ class App extends Component {
               onUpload={this.handleFile}
               disabled={this.state.disabled}
             />
+            {/* <Options /> */}
             <MakeButton
               onMake={this.onMake}
               visible={!!this.state.data && !this.state.picklists}
