@@ -19,6 +19,7 @@ class PicklistTab extends Component {
     text = text.replace(/,"rank/g, ',\n"rank');
     text = text.replace(/},{/g, ',},\n{');
     text = text.replace(/{/g, ' {\n');
+    text = text.replace(/\[ {/g, '[{');
     text = text.replace(/}/g, '\n }');
     text = text.replace(/"name"/g, '    "name"');
     text = text.replace(/"value"/g, '    "value"');
