@@ -56,8 +56,8 @@ class App extends Component {
             name: picklistName,
             value: last_value,
             parents: last_parents,
-            external: true,
-            rank: 1,
+            // external: true,
+            // rank: 1,
           };
           if (index === 0) delete picklist['parents'];
           picklists.push(picklist);
