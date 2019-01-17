@@ -12,7 +12,7 @@ class PicklistTab extends Component {
     let text = `[${JSON.stringify(content).replace(/\\r/g, '')}]`;
     text = text.slice(1, -1);
     text = text.replace(/:/g, ' : ');
-    text = text.replace(/","value/g, '",\n"value');
+    text = text.replace(/","value"/g, '",\n"value"');
     text = text.replace(/","parents/g, '",\n"parents');
     text = text.replace(/","external/g, '",\n"external');
     text = text.replace(/],"external/g, '],\n"external');
