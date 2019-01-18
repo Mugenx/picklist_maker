@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import FileUpload from './components/fileUpload.jsx';
-// import Options from './components/options.jsx';
+import Options from './components/options.jsx';
 import Picklists from './components/picklists.jsx';
 import MakeButton from './components/makeButton.jsx';
 import Footer from './components/footer';
@@ -13,7 +13,9 @@ class App extends Component {
     data: null,
     fileName: null,
     picklists: null,
-    disabled: false
+    disabled: false,
+    checkedRank: true,
+    checkedExternal: true
   };
 
   handleFile = () => {
@@ -55,7 +57,7 @@ class App extends Component {
           const picklist = {
             name: picklistName,
             value: last_value,
-            parents: last_parents,
+            parents: last_parents
             // external: true,
             // rank: 1,
           };
@@ -91,9 +93,54 @@ class App extends Component {
     data.shift();
     const rows = data;
 
-    const picklists = await this.getPicklists(rows, picklistNames);
+    let picklists = await this.getPicklists(rows, picklistNames);
     this.setState({ disabled, picklists });
   };
+
+  handelRank = async () => {
+    this.setState((state, props) => ({
+      checkedRank: !state.checkedRank
+    }));
+    const picklists = await this.makeRank(this.state);
+    this.setState({ picklists });
+  };
+
+  makeRank = ({ picklists, checkedRank }) =>
+    new Promise(resolve => {
+      picklists.forEach(({ content }) => {
+        let rank = 1;
+        content.forEach(element => {
+          if (checkedRank) {
+            element.rank = rank++;
+          } else {
+            delete element['rank'];
+          }
+        });
+      });
+      resolve(picklists);
+    });
+
+  handelExternal = async () => {
+    this.setState((state, props) => ({
+      checkedExternal: !state.checkedExternal
+    }));
+    const picklists = await this.makeExternal(this.state);
+    this.setState({ picklists });
+  };
+
+  makeExternal = ({ picklists, checkedExternal }) =>
+    new Promise(resolve => {
+      picklists.forEach(({ content }) => {
+        content.forEach(element => {
+          if (checkedExternal) {
+            element.external = true;
+          } else {
+            delete element['external'];
+          }
+        });
+      });
+      resolve(picklists);
+    });
 
   render() {
     return (
@@ -106,10 +153,20 @@ class App extends Component {
               onUpload={this.handleFile}
               disabled={this.state.disabled}
             />
-            {/* <Options /> */}
             <MakeButton
               onMake={this.onMake}
-              visible={!!this.state.data && !this.state.picklists}
+              visible={this.state.data && !this.state.picklists}
+            />
+            <Options
+              visible={this.state.picklists}
+              onExternalChecked={
+                this.handelExternal // External
+              }
+              isExternalChecked={this.state.checkedExternal}
+              onRankChecked={
+                this.handelRank // Rank
+              }
+              isRankChecked={this.state.checkedRank}
             />
             <Picklists
               picklists={this.state.picklists}

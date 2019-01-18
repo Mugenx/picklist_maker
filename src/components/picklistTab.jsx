@@ -13,19 +13,20 @@ class PicklistTab extends Component {
     text = text.slice(1, -1);
     text = text.replace(/:/g, ' : ');
     text = text.replace(/","value"/g, '",\n"value"');
-    text = text.replace(/","parents/g, '",\n"parents');
-    text = text.replace(/","external/g, '",\n"external');
-    text = text.replace(/],"external/g, '],\n"external');
-    text = text.replace(/,"rank/g, ',\n"rank');
+    text = text.replace(/","parents"/g, '",\n"parents"');
+    text = text.replace(/","external"/g, '",\n"external"');
+    text = text.replace(/],"external"/g, '],\n"external"');
+    text = text.replace(/,"rank"/g, ',\n"rank"');
     text = text.replace(/},{/g, ',},\n{');
     text = text.replace(/{/g, ' {\n');
     text = text.replace(/\[ {/g, '[{');
     text = text.replace(/}/g, '\n }');
     text = text.replace(/"name"/g, '    "name"');
     text = text.replace(/"value"/g, '    "value"');
-    text = text.replace(/"parents"/g, '    "parents');
-    text = text.replace(/"external"/g, '    "external');
-    text = text.replace(/"rank"/g, '    "rank');
+    text = text.replace(/"parents"/g, '    "parents"');
+    text = text.replace(/,"external"/g, ',\n"external"');
+    text = text.replace(/"external"/g, '    "external"');
+    text = text.replace(/"rank"/g, '    "rank"');
     text = text.replace(/","/g, '", "');
     return text;
   };
@@ -37,9 +38,10 @@ class PicklistTab extends Component {
         id={`v-pills-${this.props.name}`}
         role="tabpanel"
         aria-labelledby={`v-pills-${this.props.name}-tab`}
-        defaultValue={this.makeContent()}
-        autocapitalize="off"
-        spellcheck="false"
+        value={this.makeContent()}
+        autoCapitalize="off"
+        spellCheck="false"
+        readOnly
       />
     );
   }

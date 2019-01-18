@@ -19,6 +19,7 @@ body {
 a,
 .nav-link,
 .footer,
+.custom-switch,
 .custom-file-label {
   color: #9c9c9c;
   text-decoration: none;
@@ -86,11 +87,21 @@ a:hover {
   background-color: white;
 }
 
-textarea.form-control{
+textarea.form-control {
   color: #e83e8c;
   height: 100vh;
 }
 
+.form-control[readonly] {
+  background-color: #f7f7f7;
+}
+
 .navbar-toggler {
   background-color: #9c9c9c;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #1abc9c;
+  background-color: #1abc9c;
 }

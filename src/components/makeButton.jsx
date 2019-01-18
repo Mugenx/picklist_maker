@@ -8,7 +8,6 @@ class MakeButton extends Component {
 
   render() {
     return (
-      // <div class="btn-group" role="group" aria-label="Button group">
       <button
         type="button"
         className={this.getClasses()}
@@ -16,7 +15,6 @@ class MakeButton extends Component {
       >
         Make
       </button>
-      // </div>
     );
   }
 }
