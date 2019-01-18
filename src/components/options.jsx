@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Options extends Component {
   getClasses = () => {
     let classes = 'd-flex justify-content-end ';
-    // return this.props.visible ? classes : classes + 'invisible';
-    return this.props.visible ? classes : classes;
+    return this.props.visible ? classes : classes + 'invisible';
   };
 
   render() {
