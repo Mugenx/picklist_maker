@@ -18,7 +18,7 @@ class Options extends Component {
             onChange={this.props.onExternalChecked}
           />
           <label className="custom-control-label" htmlFor="external">
-            Extenal
+            External
           </label>
         </div>
         <div className="custom-control custom-switch d-inline">
