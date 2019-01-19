@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import jsonFormat from 'json-format';
 
 class PicklistTab extends Component {
   getClasses = () => {
@@ -9,26 +10,7 @@ class PicklistTab extends Component {
 
   makeContent = () => {
     const { content } = this.props;
-    let text = `[${JSON.stringify(content).replace(/\\r/g, '')}]`;
-    text = text.slice(1, -1);
-    text = text.replace(/:/g, ' : ');
-    text = text.replace(/","value"/g, '",\n"value"');
-    text = text.replace(/","parents"/g, '",\n"parents"');
-    text = text.replace(/","external"/g, '",\n"external"');
-    text = text.replace(/],"external"/g, '],\n"external"');
-    text = text.replace(/,"rank"/g, ',\n"rank"');
-    text = text.replace(/},{/g, ',},\n{');
-    text = text.replace(/{/g, ' {\n');
-    text = text.replace(/\[ {/g, '[{');
-    text = text.replace(/}/g, '\n }');
-    text = text.replace(/"name"/g, '    "name"');
-    text = text.replace(/"value"/g, '    "value"');
-    text = text.replace(/"parents"/g, '    "parents"');
-    text = text.replace(/,"external"/g, ',\n"external"');
-    text = text.replace(/"external"/g, '    "external"');
-    text = text.replace(/"rank"/g, '    "rank"');
-    text = text.replace(/","/g, '", "');
-    return text;
+    return jsonFormat(content).replace(/\\r/g, '');
   };
 
   render() {

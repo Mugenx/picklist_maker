@@ -147,7 +147,9 @@ class App extends Component {
       <div>
         <div className="wrapper">
           <div className="container">
-            <h1>Picklists Maker</h1>
+            <a href="https://mugenx.io">
+              <h1>Picklists Maker</h1>
+            </a>
             <FileUpload
               fileName={this.state.fileName}
               onUpload={this.handleFile}
