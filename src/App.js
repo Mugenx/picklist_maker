@@ -5,6 +5,7 @@ import Options from './components/options.jsx';
 import Picklists from './components/picklists.jsx';
 import MakeButton from './components/makeButton.jsx';
 import Footer from './components/footer';
+import csv from 'csvtojson';
 import _ from 'lodash';
 import './App.css';
 
@@ -70,8 +71,14 @@ class App extends Component {
 
   makeData = () =>
     new Promise(resolve => {
-      const data = this.state.data.split('\n');
-      resolve(data.map(element => element.split(',')));
+      csv({
+        noheader: true,
+        output: 'csv'
+      })
+        .fromString(this.state.data)
+        .then(csvRow => {
+          resolve(csvRow);
+        });
     });
 
   getPicklists = (rows, picklistNames) =>
