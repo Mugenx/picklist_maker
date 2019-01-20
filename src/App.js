@@ -67,7 +67,7 @@ class App extends Component {
       resolve(_.uniqWith(picklists, _.isEqual));
     });
 
-  makeData = () =>
+  makeRows = () =>
     new Promise(resolve => {
       csv({
         noheader: true,
@@ -91,12 +91,9 @@ class App extends Component {
     });
 
   onMake = async () => {
-    const rows = await this.makeData();
-
-    const picklistNames = rows[0];
-    rows.shift();
-
-    let picklists = await this.getPicklists(rows, picklistNames);
+    const rows = await this.makeRows();
+    const picklistNames = rows.shift();
+    const picklists = await this.getPicklists(rows, picklistNames);
     this.setState({ picklists });
   };
 
