@@ -34,32 +34,27 @@ class App extends Component {
     reader.readAsText(file);
   };
 
-  makePicklist = (rows, index, picklistName) =>
+  makePicklist = (rows, index, name) =>
     new Promise(resolve => {
-      let last_value;
-      let last_parents;
+      let value;
+      let parents;
       const picklists = [];
       rows.forEach(row => {
-        const current_value = row[index];
-        const current_parents = _.take(row, index).filter(
+        const row_value = row[index];
+        const row_parents = _.take(row, index).filter(
           parent => !_.isEmpty(parent)
         );
         const diffValue =
-          !_.isUndefined(last_value) ||
-          (!_.isEmpty(current_value) && last_value !== current_value);
+          !_.isUndefined(value) ||
+          (!_.isEmpty(row_value) && value !== row_value);
         const diffParents =
-          !_.isUndefined(last_parents) ||
-          (!_.isEmpty(current_parents) &&
-            !_.isEqual(last_parents, current_parents));
+          !_.isUndefined(parents) ||
+          (!_.isEmpty(row_parents) && !_.isEqual(parents, row_parents));
 
-        if (diffValue) last_value = current_value;
-        if (diffParents) last_parents = current_parents;
-        if ((diffParents || diffValue) && last_value) {
-          const picklist = {
-            name: picklistName,
-            value: last_value,
-            parents: last_parents
-          };
+        if (diffValue) value = row_value;
+        if (diffParents) parents = row_parents;
+        if ((diffParents || diffValue) && value) {
+          const picklist = { name, value, parents };
           if (index === 0) delete picklist['parents'];
           picklists.push(picklist);
         }
@@ -82,10 +77,10 @@ class App extends Component {
   getPicklists = (rows, picklistNames) =>
     new Promise(resolve => {
       const picklists = [];
-      picklistNames.forEach(async picklistName => {
-        const index = picklistNames.indexOf(picklistName);
-        const content = await this.makePicklist(rows, index, picklistName);
-        picklists.push({ name: picklistName, content: content });
+      picklistNames.forEach(async name => {
+        const index = picklistNames.indexOf(name);
+        const content = await this.makePicklist(rows, index, name);
+        picklists.push({ name, content });
       });
       resolve(picklists);
     });

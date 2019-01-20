@@ -16,11 +16,12 @@ class Picklists extends Component {
     return (
       picklists &&
       picklists.map(picklist => {
+        const { name } = picklist;
         return (
           <Pill
-            key={picklist.name}
+            key={name}
             index={picklists.indexOf(picklist)}
-            name={picklist.name}
+            name={name}
             handelActive={this.handelActive}
             activePill={this.state.active}
           />
@@ -34,13 +35,14 @@ class Picklists extends Component {
     return (
       picklists &&
       picklists.map(picklist => {
+        const { name, content } = picklist;
         return (
           <Tab
-            key={picklist.name}
+            key={name}
             index={picklists.indexOf(picklist)}
-            name={picklist.name}
+            name={name}
             checkedVersion={checkedVersion}
-            content={picklist.content}
+            content={content}
             activeTab={this.state.active}
           />
         );
