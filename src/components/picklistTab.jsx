@@ -9,9 +9,8 @@ class PicklistTab extends Component {
   };
 
   makeContent = () => {
-    const { content, version } = this.props;
-    
-    return jsonFormat(content, version).replace(/\\r/g, '');
+    const { content, checkedVersion } = this.props;
+    return jsonFormat(content, checkedVersion).replace(/\\r/g, '');
   };
 
   render() {

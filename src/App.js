@@ -14,7 +14,6 @@ class App extends Component {
     data: null,
     fileName: null,
     picklists: null,
-    disabled: false,
     checkedVersion: true,
     checkedExternal: true,
     checkedRank: true
@@ -40,7 +39,7 @@ class App extends Component {
       let last_value;
       let last_parents;
       const picklists = [];
-      _.each(rows, row => {
+      rows.forEach(row => {
         const current_value = row[index];
         const current_parents = _.take(row, index).filter(
           parent => !_.isEmpty(parent)
@@ -92,25 +91,23 @@ class App extends Component {
     });
 
   onMake = async () => {
-    const disabled = true;
-    const data = await this.makeData();
+    const rows = await this.makeData();
 
-    const picklistNames = data[0];
-    data.shift();
-    const rows = data;
+    const picklistNames = rows[0];
+    rows.shift();
 
     let picklists = await this.getPicklists(rows, picklistNames);
-    this.setState({ disabled, picklists });
+    this.setState({ picklists });
   };
 
   handelVersion = () => {
-    this.setState((state, props) => ({
+    this.setState(state => ({
       checkedVersion: !state.checkedVersion
     }));
   };
 
   handelRank = async () => {
-    this.setState((state, props) => ({
+    this.setState(state => ({
       checkedRank: !state.checkedRank
     }));
     const picklists = await this.makeRank(this.state);
@@ -130,7 +127,7 @@ class App extends Component {
     });
 
   handelExternal = async () => {
-    this.setState((state, props) => ({
+    this.setState(state => ({
       checkedExternal: !state.checkedExternal
     }));
     const picklists = await this.makeExternal(this.state);
@@ -159,7 +156,7 @@ class App extends Component {
             <FileUpload
               fileName={this.state.fileName}
               onUpload={this.handleFile}
-              disabled={this.state.disabled}
+              disabled={this.state.picklists}
             />
             <MakeButton
               onMake={this.onMake}

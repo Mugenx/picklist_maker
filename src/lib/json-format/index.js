@@ -20,64 +20,67 @@ var p = [],
     pop = function (m, i) { return p[i - 1] },
     tabs = function (count, indentType) { return new Array(count + 1).join(indentType); };
 
-function JSONFormat(json, indentType, version) {
-    p = [];
-    var out = "",
-        indent = 0;
+function JSONFormat(json, indentType, checkedVersion) {
+  p = [];
+  var out = '',
+    indent = 0;
 
-    // Extract backslashes and strings
-    json = json
-        .replace(/\\./g, push)
-        .replace(/(".*?"|'.*?')/g, push)
-        .replace(/\s+/, '');
+  // Extract backslashes and strings
+  json = json
+    .replace(/\\./g, push)
+    .replace(/(".*?"|'.*?')/g, push)
+    .replace(/\s+/, '');
 
-    // Indent and insert newlines
-    for (var i = 0; i < json.length; i++) {
-        var c = json.charAt(i);
+  // Indent and insert newlines
+  for (var i = 0; i < json.length; i++) {
+    var c = json.charAt(i);
 
-        switch (c) {
-            case '{':
-            case '[':
-                out += c + "\n" + tabs(++indent, indentType);
-                break;
-            case '}':
-            case ']':
-            if (version === 5) {
-                out += ",\n" + tabs(--indent, indentType) + c;
-            } else {
-                out += '\n' + tabs(--indent, indentType) + c;
-            }
-                break;
-            case ',':
-                out += ",\n" + tabs(indent, indentType);
-                break;
-            case ':':
-                out += ": ";
-                break;
-            default:
-                out += c;
-                break;
+    switch (c) {
+      case '{':
+      case '[':
+        out += c + '\n' + tabs(++indent, indentType);
+        break;
+      case '}':
+      case ']':
+        if (checkedVersion) {
+          out += ',\n' + tabs(--indent, indentType) + c;
+        } else {
+          out += '\n' + tabs(--indent, indentType) + c;
         }
+        break;
+      case ',':
+        out += ',\n' + tabs(indent, indentType);
+        break;
+      case ':':
+        out += ': ';
+        break;
+      default:
+        out += c;
+        break;
     }
+  }
 
-    // Strip whitespace from numeric arrays and put backslashes 
-    // and strings back in
-    out = out
-        .replace(/\[[\d,\s]+?\]/g, function (m) { return m.replace(/\s/g, ''); })
-        .replace(/\\(\d+)\\/g, pop) // strings
-        .replace(/\\(\d+)\\/g, pop); // backslashes in strings
+  // Strip whitespace from numeric arrays and put backslashes
+  // and strings back in
+  out = out
+    .replace(/\[[\d,\s]+?\]/g, function(m) {
+      return m.replace(/\s/g, '');
+    })
+    .replace(/\\(\d+)\\/g, pop) // strings
+    .replace(/\\(\d+)\\/g, pop); // backslashes in strings
 
-    return out;
+  return out;
 };
 
-module.exports = function (json, version) {
-    // config = config || configDefault;
-    version = version || 4
-    var indent = indentConfig[configDefault.type];
+module.exports = function(json, checkedVersion) {
+  // config = config || configDefault;
+  var indent = indentConfig[configDefault.type];
 
-    if (indent == null) {
-        throw new Error('Unrecognized indent type: "' + configDefault.type + '"');
-    }
-    var indentType = new Array((configDefault.size || indent.size) + 1).join(indent.char);
-    return JSONFormat(JSON.stringify(json), indentType, version);
-}
+  if (indent == null) {
+    throw new Error('Unrecognized indent type: "' + configDefault.type + '"');
+  }
+  var indentType = new Array((configDefault.size || indent.size) + 1).join(
+    indent.char
+  );
+    return JSONFormat(JSON.stringify(json), indentType, checkedVersion);
+};
