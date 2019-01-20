@@ -30,7 +30,8 @@ class Picklists extends Component {
   };
 
   getTabs = () => {
-    const { picklists } = this.props;
+    const { picklists, checkedVersion } = this.props;
+    
     return (
       picklists &&
       picklists.map(picklist => {
@@ -39,6 +40,7 @@ class Picklists extends Component {
             key={picklist.name}
             index={picklists.indexOf(picklist)}
             name={picklist.name}
+            version={checkedVersion ? 5 : 4}
             content={picklist.content}
             activeTab={this.state.active}
           />

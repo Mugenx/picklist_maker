@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import jsonFormat from 'json-format';
+import jsonFormat from '../lib/json-format';
 
 class PicklistTab extends Component {
   getClasses = () => {
@@ -9,8 +9,9 @@ class PicklistTab extends Component {
   };
 
   makeContent = () => {
-    const { content } = this.props;
-    return jsonFormat(content).replace(/\\r/g, '');
+    const { content, version } = this.props;
+    
+    return jsonFormat(content, version).replace(/\\r/g, '');
   };
 
   render() {

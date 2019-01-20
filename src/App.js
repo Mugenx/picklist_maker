@@ -15,8 +15,9 @@ class App extends Component {
     fileName: null,
     picklists: null,
     disabled: false,
-    checkedRank: true,
-    checkedExternal: true
+    checkedVersion: true,
+    checkedExternal: true,
+    checkedRank: true
   };
 
   handleFile = () => {
@@ -59,8 +60,6 @@ class App extends Component {
             name: picklistName,
             value: last_value,
             parents: last_parents
-            // external: true,
-            // rank: 1,
           };
           if (index === 0) delete picklist['parents'];
           picklists.push(picklist);
@@ -104,6 +103,12 @@ class App extends Component {
     this.setState({ disabled, picklists });
   };
 
+  handelVersion = () => {
+    this.setState((state, props) => ({
+      checkedVersion: !state.checkedVersion
+    }));
+  };
+
   handelRank = async () => {
     this.setState((state, props) => ({
       checkedRank: !state.checkedRank
@@ -117,11 +122,8 @@ class App extends Component {
       picklists.forEach(({ content }) => {
         let rank = 1;
         content.forEach(element => {
-          if (checkedRank) {
-            element.rank = rank++;
-          } else {
-            delete element['rank'];
-          }
+          delete element['rank'];
+          if (checkedRank) element.rank = rank++;
         });
       });
       resolve(picklists);
@@ -139,11 +141,8 @@ class App extends Component {
     new Promise(resolve => {
       picklists.forEach(({ content }) => {
         content.forEach(element => {
-          if (checkedExternal) {
-            element.external = true;
-          } else {
-            delete element['external'];
-          }
+          delete element['external'];
+          if (checkedExternal) element.external = true;
         });
       });
       resolve(picklists);
@@ -168,6 +167,10 @@ class App extends Component {
             />
             <Options
               visible={this.state.picklists}
+              onVersionlChecked={
+                this.handelVersion // version
+              }
+              isVersionChecked={this.state.checkedVersion}
               onExternalChecked={
                 this.handelExternal // External
               }
@@ -178,6 +181,7 @@ class App extends Component {
               isRankChecked={this.state.checkedRank}
             />
             <Picklists
+              checkedVersion={!this.state.checkedVersion}
               picklists={this.state.picklists}
               visible={this.state.picklists}
             />

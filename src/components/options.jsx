@@ -13,6 +13,18 @@ class Options extends Component {
           <input
             type="checkbox"
             className="custom-control-input"
+            id="version"
+            checked={!this.props.isVersionChecked}
+            onChange={this.props.onVersionlChecked}
+          />
+          <label className="custom-control-label" htmlFor="version">
+            5.x
+          </label>
+        </div>
+        <div className="custom-control custom-switch d-inline mr-3">
+          <input
+            type="checkbox"
+            className="custom-control-input"
             id="external"
             checked={!this.props.isExternalChecked}
             onChange={this.props.onExternalChecked}
