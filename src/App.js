@@ -76,12 +76,13 @@ class App extends Component {
 
   getPicklists = (rows, picklistNames) =>
     new Promise(resolve => {
-      const picklists = picklistNames.map(async name => {
+      const picklists = [];
+      picklistNames.forEach(async name => {
         const index = picklistNames.indexOf(name);
         const content = await this.makePicklist(rows, index, name);
-        return { name, content };
+        picklists.push({ name, content });
       });
-      resolve(Promise.all(picklists));
+      resolve(picklists);
     });
 
   onMake = async () => {
@@ -107,9 +108,9 @@ class App extends Component {
 
   makeRank = ({ picklists, checkedRank }) =>
     new Promise(resolve => {
-      picklists.map(({ content }) => {
+      picklists.forEach(({ content }) => {
         let rank = 1;
-        return content.forEach(element => {
+        content.forEach(element => {
           delete element['rank'];
           if (checkedRank) element.rank = rank++;
         });
@@ -127,13 +128,13 @@ class App extends Component {
 
   makeExternal = ({ picklists, checkedExternal }) =>
     new Promise(resolve => {
-      picklists.map(({ content }) =>
+      picklists.forEach(({ content }) => {
         content.map(element => {
           delete element['external'];
           if (checkedExternal) element.external = true;
           return element;
-        })
-      );
+        });
+      });
       resolve(picklists);
     });
 
