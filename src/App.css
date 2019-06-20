@@ -17,12 +17,18 @@ body {
 }
 
 a,
+.nav-link,
 .footer,
+.custom-switch,
 .custom-file-label {
   color: #9c9c9c;
   text-decoration: none;
   background-color: transparent;
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.nav-link:hover {
+  cursor: pointer;
 }
 
 a:hover {
@@ -77,6 +83,26 @@ a:hover {
   color: gray;
 }
 
-.btn-file input[type='file'] {
-  color: red;
+.d-inline {
+  background-color: white;
+}
+
+textarea.form-control {
+  color: #e83e8c;
+  margin-bottom: 1em;
+  height: 65vh;
+}
+
+.form-control[readonly] {
+  background-color: #f7f7f7;
+}
+
+.navbar-toggler {
+  background-color: #9c9c9c;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #1abc9c;
+  background-color: #1abc9c;
 }

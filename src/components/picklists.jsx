@@ -16,11 +16,12 @@ class Picklists extends Component {
     return (
       picklists &&
       picklists.map(picklist => {
+        const { name } = picklist;
         return (
           <Pill
-            key={picklist.name}
+            key={name}
             index={picklists.indexOf(picklist)}
-            name={picklist.name}
+            name={name}
             handelActive={this.handelActive}
             activePill={this.state.active}
           />
@@ -30,20 +31,18 @@ class Picklists extends Component {
   };
 
   getTabs = () => {
-    const { picklists } = this.props;
+    const { picklists, checkedVersion } = this.props;
     return (
       picklists &&
       picklists.map(picklist => {
+        const { name, content } = picklist;
         return (
           <Tab
-            key={picklist.name}
+            key={name}
             index={picklists.indexOf(picklist)}
-            name={picklist.name}
-            content={
-              picklists.indexOf(picklist) === picklists.length - 1
-                ? JSON.stringify(picklist.content).replace(/\\r/g, '')
-                : JSON.stringify(picklist.content)
-            }
+            name={name}
+            checkedVersion={checkedVersion}
+            content={content}
             activeTab={this.state.active}
           />
         );
