@@ -41,6 +41,10 @@ class App extends Component {
     this.setState({ data });
   };
 
+  getOr = () => {
+    return this.state.picklists ? 'or-hide' : 'or';
+  };
+
   makePicklist = (rows, index, name) =>
     new Promise(resolve => {
       let value;
@@ -155,10 +159,10 @@ class App extends Component {
             </a>
             <ExcelTable
               onParsePaste={this.handleExcelTable}
-              onFreeze={!!this.state.fileName}
+              onFreeze={this.state.fileName}
               disabled={this.state.picklists}
             />
-            <h4 className="or">or</h4>
+            <h4 className={this.getOr()}>or</h4>
             <FileUpload
               fileName={this.state.fileName}
               onUpload={this.handleFile}
