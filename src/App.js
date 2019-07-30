@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import ExcelTable from './components/excelTable';
 import FileUpload from './components/fileUpload.jsx';
 import Options from './components/options.jsx';
 import Picklists from './components/picklists.jsx';
@@ -32,6 +33,16 @@ class App extends Component {
     });
 
     reader.readAsText(file);
+  };
+
+  handleExcelTable = string => {
+    const rows = string.split('\n').map(row => row !== '' && row.split('\t'));
+    const data = rows.join('\n');
+    this.setState({ data });
+  };
+
+  getOr = () => {
+    return this.state.picklists ? 'or-hide' : 'or';
   };
 
   makePicklist = (rows, index, name) =>
@@ -146,14 +157,22 @@ class App extends Component {
             <a href="https://mugenx.io">
               <h1>Picklists Maker</h1>
             </a>
+            <ExcelTable
+              onParsePaste={this.handleExcelTable}
+              onFreeze={this.state.fileName}
+              disabled={this.state.picklists}
+            />
+            <h4 className={this.getOr()}>or</h4>
             <FileUpload
               fileName={this.state.fileName}
               onUpload={this.handleFile}
+              onFreeze={this.state.data && !this.state.picklists}
               disabled={this.state.picklists}
             />
             <MakeButton
               onMake={this.onMake}
               visible={this.state.data && !this.state.picklists}
+              disabled={this.state.picklists}
             />
             <Options
               visible={this.state.picklists}

@@ -4,6 +4,17 @@ h1 {
   margin: 3rem;
 }
 
+.or {
+  color: #9c9c9c;
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  margin: 1rem;
+}
+
+.or-hide {
+  display: none;
+}
+
 .wrapper {
   margin: 5% 8% 0;
   padding: 1rem;
@@ -105,4 +116,35 @@ textarea.form-control {
   color: #fff;
   border-color: #1abc9c;
   background-color: #1abc9c;
+}
+
+.excel-table {
+  width: 100%;
+}
+
+.excel-table-disabled {
+  width: 100%;
+  pointer-events: none;
+}
+
+.data-grid-container .data-grid .cell > input {
+  outline: none !important;
+  border: 2px solid #1abc9c;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  background: none;
+  display: block;
+}
+
+.data-grid-container .data-grid .cell.selected {
+  border: 1px double #1abc9c;
+  -webkit-transition: none;
+  transition: none;
+  box-shadow: inset 0 -100px 0 rgba(26, 188, 156, 0.15);
+}
+
+.data-grid-container .data-grid .cell.updated {
+  background-color: rgba(26, 188, 156, 0.15);
+  transition: background-color 0ms ease;
 }

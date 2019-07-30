@@ -8,13 +8,15 @@ class MakeButton extends Component {
 
   render() {
     return (
-      <button
-        type="button"
-        className={this.getClasses()}
-        onClick={this.props.onMake}
-      >
-        Make
-      </button>
+      !this.props.disabled && (
+        <button
+          type="button"
+          className={this.getClasses()}
+          onClick={this.props.onMake}
+        >
+          Make
+        </button>
+      )
     );
   }
 }
