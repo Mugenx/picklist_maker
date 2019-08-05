@@ -157,16 +157,16 @@ class App extends Component {
             <a href="https://mugenx.io">
               <h1>Picklists Maker</h1>
             </a>
-            <ExcelTable
-              onParsePaste={this.handleExcelTable}
-              onFreeze={this.state.fileName}
-              disabled={this.state.picklists}
-            />
-            <h4 className={this.getOr()}>or</h4>
             <FileUpload
               fileName={this.state.fileName}
               onUpload={this.handleFile}
               onFreeze={this.state.data && !this.state.picklists}
+              disabled={this.state.picklists}
+            />
+            <h4 className={this.getOr()}>or</h4>
+            <ExcelTable
+              onParsePaste={this.handleExcelTable}
+              onFreeze={this.state.fileName}
               disabled={this.state.picklists}
             />
             <MakeButton

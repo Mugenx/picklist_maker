@@ -7,7 +7,7 @@ class ExcelTable extends Component {
     Array.from(Array(y), (n, row) =>
       Array.from(Array(x), (n, col) =>
         col === 0
-          ? { readOnly: true, value: ++row, width: 100 }
+          ? { readOnly: true, value: ++row, width: 45 }
           : { value: null }
       )
     );
